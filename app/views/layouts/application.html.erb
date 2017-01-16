@@ -17,6 +17,41 @@
         <% end %>
       </script>
   <% end %>
-    <%= yield %>
+
+  <row class="clearfix">
+    <div class="col-md-8">
+      <h1><span class="glyphicon glyphicon-tree-deciduous" aria-hidden="true"></span>Flowerpower</h1>
+    </div>
+    <div class="col-md-4">
+      <% if user_signed_in? %>
+
+          <%= link_to('Edit registration', edit_user_registration_path, class: 'btn btn-info') %>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete, class: 'btn btn-danger') %>
+
+      <% else %>
+
+          <%= link_to('Register', new_user_registration_path, class: 'btn btn-success')  %>
+          <%= link_to('Login', new_user_session_path, class: 'btn btn-primary')  %>
+
+      <% end %>
+    </div>
+  </row>
+
+  <row>
+    <div class="col-md-2">
+      <ul class="nav nav-pills nav-stacked">
+        <li role="presentation"><%= link_to 'Home', root_path %></li>
+        <li role="presentation"><%= link_to 'Artikelen', root_path %></li>
+        <li role="presentation"><%= link_to 'Contact', root_path %></li>
+        <% if user_signed_in? && current_user.employee_role? %>
+            <li role="presentation"><%= link_to rails_admin_path, class: 'login-button' do %>Klanten bekijken<% end %></li>
+        <% end %>
+
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <%= yield %>
+    </div>
+  </row>
   </body>
 </html>

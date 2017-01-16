@@ -19,6 +19,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'simple_form', '~> 3.4'
 gem 'devise'
 gem 'toastr-rails'
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
+gem 'cancancan'
 
 group :development, :test do
   gem 'byebug', platform: :mri
