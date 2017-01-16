@@ -42,7 +42,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li role="presentation"><%= link_to 'Home', root_path %></li>
         <li role="presentation"><%= link_to 'Artikelen', root_path %></li>
-        <li role="presentation"><%= link_to 'Contact', root_path %></li>
+        <li role="presentation"><%= link_to 'Contact', '/pages/contact' %></li>
         <% if user_signed_in? && current_user.employee_role? %>
             <li role="presentation"><%= link_to rails_admin_path, class: 'login-button' do %>Klanten bekijken<% end %></li>
         <% end %>

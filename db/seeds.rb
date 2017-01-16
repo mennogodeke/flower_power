@@ -5,36 +5,54 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+1.upto(3) do |i|
+  User.create(
+          :email => "testklant#{i}@mail.com",
+          :password => "password",
+          :password_confirmation => "password"
+  )
+end
 
+1.upto(2) do |i|
+  User.create(
+          :email => "testmedewerker#{i}@mail.com",
+          :password => "password",
+          :password_confirmation => "password",
+          :employee_role => true
+  )
+end
 
-user1 = User.new
-user1.email = 'testklant1@mail.com'
-user1.password = 'password'
-user1.password_confirmation = 'password'
-user1.save!
+1.upto(4) do |i|
+  Store.create(
+           :store_name => "winkel_#{i}"
+  )
+end
 
-user2 = User.new
-user2.email = 'testklant2@mail.com'
-user2.password = 'password'
-user2.password_confirmation = 'password'
-user2.save!
+store = Store.first
+store.store_address = "Langelaan1"
+store.store_zip = "3344tt"
+store.store_city = "Rotterdam"
+store.store_telephone = "0523-121212"
+store.save!
 
-user3 = User.new
-user3.email = 'testklant3@mail.com'
-user3.password = 'password'
-user3.password_confirmation = 'password'
-user3.save!
+store = Store.find(2)
+store.store_address = "Kortelaan 2"
+store.store_zip = "4433yy"
+store.store_city = "Amsterdam"
+store.store_telephone = "0523-232222"
+store.save!
 
-user4 = User.new
-user4.email = 'testmedewerker1@mail.com'
-user4.password = 'password'
-user4.password_confirmation = 'password'
-user4.employee_role = true
-user4.save!
+store = Store.find(3)
+store.store_address = "Stadsplein 8"
+store.store_zip = "1234uv"
+store.store_city = "Utrecht"
+store.store_telephone = "0523-422433"
+store.save!
 
-user5 = User.new
-user5.email = 'testmedewerker2@mail.com'
-user5.password = 'password'
-user4.employee_role = true
-user5.password_confirmation = 'password'
-user5.save!
+store = Store.last
+store.store_address = "Grote Markt 20"
+store.store_zip = "4545RR"
+store.store_city = "Almere"
+store.store_telephone = "0566-909010"
+store.save!
+
