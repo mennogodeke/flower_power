@@ -1,0 +1,5 @@
+<h1><%= @product.product_name %></h1>
+
+<h3><small>prijs </small><%= number_to_currency(@product.product_price, :unit => "€") %></h3>
+
+<%= link_to "Terug", products_path, class: "btn btn-default" %>

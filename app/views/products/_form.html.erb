@@ -1,0 +1,22 @@
+<%= simple_form_for @product do |f| %>
+
+    <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@product.errors.count, "error") %> prohibited
+            this article from being saved:
+          </h2>
+          <ul>
+            <% @product.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.input :product_name %>
+    <%= f.number_field :product_price %>
+    <%= f.button :submit %>
+
+<% end %>

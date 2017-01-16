@@ -24,7 +24,8 @@ end
 
 1.upto(4) do |i|
   Store.create(
-           :store_name => "winkel_#{i}"
+           :store_name => "winkel_#{i}",
+           :id => i
   )
 end
 
@@ -56,3 +57,26 @@ store.store_city = "Almere"
 store.store_telephone = "0566-909010"
 store.save!
 
+product = Product.new
+product.id = 1
+product.product_name = "artikel 1"
+product.product_price = 1
+product.save!
+
+product = Product.new
+product.id = 2
+product.product_name = "artikel 2"
+product.product_price = 2
+product.save!
+
+product = Product.new
+product.id = 3
+product.product_name = "artikel 3"
+product.product_price = 2.50
+product.save!
+
+product = Product.new
+product.id = 4
+product.product_name = "artikel 4"
+product.product_price = 3
+product.save!
