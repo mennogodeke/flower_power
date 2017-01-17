@@ -1,0 +1,15 @@
+<%= simple_form_for @order do |f| %>
+
+  <%= f.collection_select(:store_id, @stores, :id, :store_name) %>
+
+  <% if current_user.employee_role? %>
+      <%= f.input :employee_id, :as => :hidden, :input_html => { :value => current_user.id} %>
+      <%= f.input :ready %>
+      <%= f.input :payed %>
+  <% else %>
+      <%= f.input :customer_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+  <% end %>
+
+  <%= f.button :submit %>
+
+<% end %>
