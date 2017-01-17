@@ -5,7 +5,9 @@
   <thead>
   <tr>
     <th>Winkel</th>
+    <th>Afgehandeld</th>
     <th>Klant</th>
+    <th>Opgehaald</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -13,12 +15,19 @@
       <tbody>
       <tr>
         <td><%= order.store.store_name %></td>
+        <% if order.ready? %>
+          <td>Ja</td>
+        <% else %>
+            <td>Nee</td>
+        <% end %>
         <td><%= order.customer.email %></td>
-        <td><%= link_to 'Show', order_path(order), class: "btn btn-default" %></td>
-        <td><%= link_to 'Edit', edit_order_path(order), class: "btn btn-warning" %></td>
-        <td><%= link_to 'Destroy', order_path(order),
-                        method: :delete,
-                        data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        <% if order.payed? %>
+            <td>Ja</td>
+        <% else %>
+            <td>Nee</td>
+        <% end %>
+        <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+        <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-warning" %></td>
       </tr>
       </tbody>
   <% end %>
@@ -37,11 +46,7 @@
           <tr>
             <td><%= order.store.store_name %></td>
             <td><%= order.created_at %></td>
-            <td><%= link_to 'Show', order_path(order), class: "btn btn-default" %></td>
-            <td><%= link_to 'Edit', edit_order_path(order), class: "btn btn-warning" %></td>
-            <td><%= link_to 'Destroy', order_path(order),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+            <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
           </tr>
           </tbody>
       <% end %>

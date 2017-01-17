@@ -11,6 +11,9 @@ class Ability
          can :dashboard                  # allow access to dashboard
        end
       if user.customer_role?
+        can :create, Order
+        can :create, OrderItem
+        can :read, Product
       end
     #
     # The first argument to `can` is the action you are giving the user

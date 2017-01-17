@@ -1,1 +1,25 @@
 <h1>Contact</h1>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Stad</th>
+    <th>Adres</th>
+    <th>Postcode</th>
+    <th>Telefoon</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <% Store.all.each do |store| %>
+    <tbody>
+    <tr>
+      <td><%= store.store_city %></td>
+      <td><%= store.store_address %></td>
+      <td><%= store.store_zip %></td>
+      <td><%= store.store_telephone %></td>
+      <td><%= store.email %></td>
+    </tr>
+    </tbody>
+  <%end%>
+
+</table>

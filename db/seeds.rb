@@ -31,6 +31,7 @@ end
 
 store = Store.first
 store.store_address = "Langelaan1"
+store.email = "rotterdam@flowerpower.com"
 store.store_zip = "3344tt"
 store.store_city = "Rotterdam"
 store.store_telephone = "0523-121212"
@@ -38,6 +39,7 @@ store.save!
 
 store = Store.find(2)
 store.store_address = "Kortelaan 2"
+store.email = "amsterdam@flowerpower.com"
 store.store_zip = "4433yy"
 store.store_city = "Amsterdam"
 store.store_telephone = "0523-232222"
@@ -45,6 +47,7 @@ store.save!
 
 store = Store.find(3)
 store.store_address = "Stadsplein 8"
+store.email = "Utrecht@flowerpower.com"
 store.store_zip = "1234uv"
 store.store_city = "Utrecht"
 store.store_telephone = "0523-422433"
@@ -52,6 +55,7 @@ store.save!
 
 store = Store.last
 store.store_address = "Grote Markt 20"
+store.email = "almere@flowerpower.com"
 store.store_zip = "4545RR"
 store.store_city = "Almere"
 store.store_telephone = "0566-909010"

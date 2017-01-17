@@ -13,6 +13,10 @@
   </div>
   <div class="col-md-6">
     <h3>Klant</h3>
+    <%= @order.customer.first_name %> <%= @order.customer.insertion %> <%= @order.customer.last_name %><br>
+    <%= @order.customer.address %><br>
+    <%= @order.customer.zip %><br>
+    <%= @order.customer.city %><br>
     <%= @order.customer.email %><br>
   </div>
 </row>
@@ -43,15 +47,17 @@
     </table>
 
     <% unless @order.ready? %>
-      <h2>Voeg producten toe</h2>
-      <%= simple_form_for([@order, @order.order_items.build], html: {class: 'form-inline'}) do |f| %>
-          <%= f.collection_select(:product_id, @products, :id, :product_name, {class: "dropdown-menu"}) %>
+        <% if @order.customer_id == current_user.id %>
+          <h2>Voeg producten toe</h2>
+          <%= simple_form_for([@order, @order.order_items.build], html: {class: 'form-inline'}) do |f| %>
+              <%= f.collection_select(:product_id, @products, :id, :product_name, {class: "dropdown-menu"}) %>
 
-        <div class="form-group col-sx-2">
-          <%= f.input :amount, class: 'form-control'%>
-        </div>
+            <div class="form-group col-sx-2">
+              <%= f.input :amount, class: 'form-control'%>
+            </div>
 
-        <%= f.button :submit, class: 'form-control' %>
+            <%= f.button :submit, class: 'form-control' %>
+          <% end %>
       <% end  %>
     <% end %>
   </div>
@@ -62,7 +68,7 @@
     <h3>Status</h3>
     <% if @order.ready? %>
       Bestelling ligt klaar<br>
-      Afgehandeld door: <%= @order.employee.email %><br>
+      Afgehandeld door: <%= @order.employee.first_name %> <%= @order.employee.insertion %> <%= @order.employee.last_name %><br>
     <% else %>
         Bestelling is in behandeling<br>
     <% end %>
@@ -74,7 +80,7 @@
     <% else %>
       Nee
     <% end %>
-
+    <br>
     <% if current_user.employee_role? %>
         <td><%= link_to 'Behandelen', edit_order_path(@order), class: "btn btn-warning" %></td>
     <% end %>

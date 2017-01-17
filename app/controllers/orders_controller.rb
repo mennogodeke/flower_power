@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource :except => [:show, :index]
   def index
     if current_user.employee_role?
       @orders = Order.all
