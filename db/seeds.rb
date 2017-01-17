@@ -15,12 +15,61 @@ end
 
 1.upto(2) do |i|
   User.create(
-          :email => "testmedewerker#{i}@mail.com",
-          :password => "password",
-          :password_confirmation => "password",
-          :employee_role => true
+      :email => "testmedewerker#{i}@mail.com",
+      :password => "password",
+      :password_confirmation => "password",
+      :employee_role => true
   )
 end
+
+user = User.first
+user.first_name = "Hendrik"
+user.last_name = "Janssen"
+user.address = "Rotterdamseweg 10"
+user.zip = "4321YU"
+user.city = "Rotterdam"
+user.dob = DateTime.new(1990, 3, 28)
+user.save!
+
+user = User.find(2)
+user.first_name = "Frits"
+user.insertion = "de"
+user.last_name = "Zwerver"
+user.address = "Utrechtseweg 10"
+user.zip = "1212PP"
+user.city = "Utrecht"
+user.dob = DateTime.new(1994, 9, 23)
+user.save!
+
+user = User.find(3)
+user.first_name = "Roos"
+user.insertion = "van"
+user.last_name = "Lente"
+user.address = "Amsterdamseweg 32"
+user.zip = "9302OP"
+user.city = "Amsterdam"
+user.dob = DateTime.new(1994, 9, 23)
+user.save!
+
+user = User.find(4)
+user.first_name = "Gerard"
+user.insertion = "de"
+user.last_name = "Zwart"
+user.address = "Rotterdamseweg 64"
+user.zip = "4990UU"
+user.city = "Rotterdam"
+user.dob = DateTime.new(1994, 9, 23)
+user.save!
+
+user = User.last
+user.first_name = "Janine"
+user.last_name = "Bloem"
+user.address = "Amsterdamseweg 10"
+user.zip = "8899YY"
+user.city = "Amsterdam"
+user.dob = DateTime.new(1994, 9, 23)
+user.save!
+
 
 1.upto(4) do |i|
   Store.create(

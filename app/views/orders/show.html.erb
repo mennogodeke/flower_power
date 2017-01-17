@@ -39,15 +39,14 @@
             <td><%= item.product.product_name %></td>
             <td><%= item.amount %></td>
             <td><%=  number_to_currency(item.product.product_price, :unit => "€") %></td>
-            <td></td>
+            <td><%=  number_to_currency(item.amount * item.product.product_price, :unit => "€") %></td>
           </tr>
 
         </tbody>
     <% end %>
     </table>
 
-    <% unless @order.ready? %>
-        <% if @order.customer_id == current_user.id %>
+        <% if @order.customer_id == current_user.id && @order.ready != true %>
           <h2>Voeg producten toe</h2>
           <%= simple_form_for([@order, @order.order_items.build], html: {class: 'form-inline'}) do |f| %>
               <%= f.collection_select(:product_id, @products, :id, :product_name, {class: "dropdown-menu"}) %>
@@ -59,7 +58,6 @@
             <%= f.button :submit, class: 'form-control' %>
           <% end %>
       <% end  %>
-    <% end %>
   </div>
 </row>
 
@@ -68,6 +66,7 @@
     <h3>Status</h3>
     <% if @order.ready? %>
       Bestelling ligt klaar<br>
+      <%= link_to 'Bekijk Factuur', order_path(@order, format: "pdf"), class: 'btn btn-info' %><br>
       Afgehandeld door: <%= @order.employee.first_name %> <%= @order.employee.insertion %> <%= @order.employee.last_name %><br>
     <% else %>
         Bestelling is in behandeling<br>

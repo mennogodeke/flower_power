@@ -22,6 +22,8 @@ gem 'toastr-rails'
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
 gem 'cancancan'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'byebug', platform: :mri

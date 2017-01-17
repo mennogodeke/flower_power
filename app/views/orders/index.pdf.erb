@@ -1,0 +1,31 @@
+<%= wicked_pdf_stylesheet_link_tag "application" %>
+<%= wicked_pdf_stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Winkel</th>
+    <th>Afgehandeld</th>
+    <th>Klant</th>
+    <th>Opgehaald</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <% @orders.each do |order| %>
+      <tbody>
+      <tr>
+        <td><%= order.store.store_name %></td>
+        <% if order.ready? %>
+            <td>Ja</td>
+        <% else %>
+            <td>Nee</td>
+        <% end %>
+        <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+        <% if order.payed? %>
+            <td>Ja</td>
+        <% else %>
+            <td>Nee</td>
+        <% end %>
+      </tr>
+      </tbody>
+  <% end %>
+</table>

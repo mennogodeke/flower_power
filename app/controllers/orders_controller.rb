@@ -3,15 +3,26 @@ class OrdersController < ApplicationController
   def index
     if current_user.employee_role?
       @orders = Order.all
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "bestellingen"
+        end
+      end
     elsif current_user.customer_role? || current_user.employee_role == false
       @orders = Order.where(customer_id: current_user.id)
     end
-
   end
 
   def show
     @order = Order.find(params[:id])
     @products = Product.all
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "bestelling#{@order.id}"
+      end
+    end
   end
 
   def new
