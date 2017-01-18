@@ -1,15 +1,21 @@
-<%= simple_form_for @order do |f| %>
 
-  <%= f.collection_select(:store_id, @stores, :id, :store_name) %>
+<%= simple_form_for @order do |f| %>
 
   <% if current_user.employee_role? %>
       <%= f.input :employee_id, :as => :hidden, :input_html => { :value => current_user.id} %>
-      <%= f.input :ready %>
-      <%= f.input :payed %>
+      <%= f.input :ready, :label => 'Bestelling ligt klaar' %>
+      <% if @order.ready? %>
+        <%= f.input :payed, :label => 'Bestelling is opgehaald en betaald' %>
+      <% end %>
+      <%= f.button :submit, 'Bestelling afhandelen', class: 'btn btn-success' %>
   <% else %>
+      <%= f.collection_select :store_id, Store.all, :id, :store_name %><br>
+        <br>
+        <br>
       <%= f.input :customer_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+      <%= f.button :submit, 'Bestelling plaatsen', class: 'btn btn-success' %>
   <% end %>
 
-  <%= f.button :submit %>
 
+  <%= link_to "Terug", orders_path, class: "btn btn-default" %>
 <% end %>

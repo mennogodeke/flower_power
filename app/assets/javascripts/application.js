@@ -13,6 +13,23 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require toastr
 //= require_tree .
+
+jQuery(document).ready(function(){
+    jQuery('#rotterdam').on('click', function(event) {
+        jQuery('.orders-rotterdam').toggle('show');
+    });
+    jQuery('#amsterdam').on('click', function(event) {
+        jQuery('.orders-amsterdam').toggle('show');
+    });
+    jQuery('#utrecht').on('click', function(event) {
+        jQuery('.orders-utrecht').toggle('show');
+    });
+    jQuery('#almere').on('click', function(event) {
+        jQuery('.orders-almere').toggle('show');
+    });
+    jQuery('#all-orders-button').on('click', function(event) {
+        jQuery('.all-orders').toggle('show');
+    });
+});

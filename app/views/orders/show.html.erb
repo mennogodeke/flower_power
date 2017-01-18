@@ -12,7 +12,8 @@
     <%= @order.store.store_telephone %><br>
   </div>
   <div class="col-md-6">
-    <h3>Klant</h3>
+    <h3>Factuur</h3>
+    <strong>Facuur nummer</strong> <%= @order.id %> <strong>Factuur Datum</strong> <%= @order.created_at.strftime("%Y-%m-%d") %><br>
     <%= @order.customer.first_name %> <%= @order.customer.insertion %> <%= @order.customer.last_name %><br>
     <%= @order.customer.address %><br>
     <%= @order.customer.zip %><br>
@@ -24,39 +25,11 @@
 <row>
   <div class="col-md-12">
     <h2>Producten</h2>
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>Product</th>
-        <th>Aantal</th>
-        <th>Per stuk</th>
-        <th>Bedrag</th>
-      </tr>
-      </thead>
-    <% @order.order_items.each do |item| %>
-        <tbody>
-          <tr>
-            <td><%= item.product.product_name %></td>
-            <td><%= item.amount %></td>
-            <td><%=  number_to_currency(item.product.product_price, :unit => "€") %></td>
-            <td><%=  number_to_currency(item.amount * item.product.product_price, :unit => "€") %></td>
-          </tr>
-
-        </tbody>
-    <% end %>
-    </table>
+    <%= render 'order_items/items' %>
 
         <% if @order.customer_id == current_user.id && @order.ready != true %>
           <h2>Voeg producten toe</h2>
-          <%= simple_form_for([@order, @order.order_items.build], html: {class: 'form-inline'}) do |f| %>
-              <%= f.collection_select(:product_id, @products, :id, :product_name, {class: "dropdown-menu"}) %>
-
-            <div class="form-group col-sx-2">
-              <%= f.input :amount, class: 'form-control'%>
-            </div>
-
-            <%= f.button :submit, class: 'form-control' %>
-          <% end %>
+          <%= render 'order_items/item_form' %>
       <% end  %>
   </div>
 </row>
@@ -81,7 +54,7 @@
     <% end %>
     <br>
     <% if current_user.employee_role? %>
-        <td><%= link_to 'Behandelen', edit_order_path(@order), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Behandelen', edit_order_path(@order), class: "btn btn-success" %></td>
     <% end %>
   </div>
 </row>

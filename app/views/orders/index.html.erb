@@ -1,57 +1,228 @@
 <h1>Bestellingen</h1>
 
 <% if current_user.employee_role? %>
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th>Winkel</th>
-    <th>Afgehandeld</th>
-    <th>Klant</th>
-    <th>Opgehaald</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-  <% @orders.each do |order| %>
-      <tbody>
+    <input type='button' id='all-orders-button' value='Alle'>
+    <div class="all-orders">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Winkel</th>
+          <th>Stad</th>
+          <th>Bestelling</th>
+          <th>Datum</th>
+          <th>Afgehandeld door</th>
+          <th>Klant</th>
+          <th>Opgehaald</th>
+          <th colspan="3"></th>
+        </tr>
+        </thead>
+        <% @orders.each do |order| %>
+            <tbody>
+            <tr>
+              <td><%= order.store.store_name %></td>
+              <td><%= order.store.store_city %></td>
+              <td><%= order.id %></td>
+              <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+              <% if order.ready? %>
+                <td><%= order.employee.first_name %> <%= order.employee.insertion %> <%= order.employee.last_name %></td>
+              <% else %>
+                  <td>Nog niet afgehandeld</td>
+              <% end %>
+              <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+              <% if order.payed? %>
+                  <td>Ja</td>
+              <% else %>
+                  <td>Nee</td>
+              <% end %>
+              <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+              <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-success" %></td>
+            </tr>
+            </tbody>
+        <% end %>
+      </table>
+      <%= link_to 'PDF', orders_path(format: "pdf"), class: 'btn btn-info' %>
+    </div>
+
+    <input type='button' id='rotterdam' value='rotterdam'>
+    <div class="orders-rotterdam">
+    <h2>Rotterdam</h2>
+    <table class="table table-hover">
+      <thead>
       <tr>
-        <td><%= order.store.store_name %></td>
-        <% if order.ready? %>
-          <td>Ja</td>
-        <% else %>
-            <td>Nee</td>
-        <% end %>
-        <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
-        <% if order.payed? %>
-            <td>Ja</td>
-        <% else %>
-            <td>Nee</td>
-        <% end %>
-        <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
-        <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-warning" %></td>
+        <th>Bestelling</th>
+        <th>Datum</th>
+        <th>Afgehandeld door</th>
+        <th>Klant</th>
+        <th>Opgehaald</th>
+        <th colspan="3"></th>
       </tr>
-      </tbody>
-  <% end %>
-</table>
-<%= link_to 'PDF', orders_path(format: "pdf"), class: 'btn btn-info' %>
+      </thead>
+      <% @store1.each do |order| %>
+          <tbody>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+            <% if order.ready? %>
+                <td><%= order.employee.first_name %> <%= order.employee.insertion %> <%= order.employee.last_name %></td>
+            <% else %>
+                <td>Nog niet afgehandeld</td>
+            <% end %>
+            <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+            <% if order.payed? %>
+                <td>Ja</td>
+            <% else %>
+                <td>Nee</td>
+            <% end %>
+            <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+            <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-success" %></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+    </div>
+    <input type='button' id='amsterdam' value='amsterdam'>
+    <div class="orders-amsterdam">
+    <h2>Amsterdam</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Bestelling</th>
+        <th>Datum</th>
+        <th>Afgehandeld door</th>
+        <th>Klant</th>
+        <th>Opgehaald</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <% @store2.each do |order| %>
+          <tbody>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+            <% if order.ready? %>
+                <td><%= order.employee.first_name %> <%= order.employee.insertion %> <%= order.employee.last_name %></td>
+            <% else %>
+                <td>Nog niet afgehandeld</td>
+            <% end %>
+            <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+            <% if order.payed? %>
+                <td>Ja</td>
+            <% else %>
+                <td>Nee</td>
+            <% end %>
+            <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+            <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-success" %></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+    </div>
+    <input type='button' id='utrecht' value='utrecht'>
+    <div class="orders-utrecht">
+    <h2>Utrecht</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+
+        <th>Bestelling</th>
+        <th>Datum</th>
+        <th>Afgehandeld door</th>
+        <th>Klant</th>
+        <th>Opgehaald</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <% @store3.each do |order| %>
+          <tbody>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+            <% if order.ready? %>
+                <td><%= order.employee.first_name %> <%= order.employee.insertion %> <%= order.employee.last_name %></td>
+            <% else %>
+                <td>Nog niet afgehandeld</td>
+            <% end %>
+            <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+            <% if order.payed? %>
+                <td>Ja</td>
+            <% else %>
+                <td>Nee</td>
+            <% end %>
+            <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+            <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-success" %></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+    </div>
+    <input type='button' id='almere' value='almere'>
+    <div class="orders-almere">
+    <h2>Almere</h2>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Bestelling</th>
+        <th>Datum</th>
+        <th>Afgehandeld door</th>
+        <th>Klant</th>
+        <th>Opgehaald</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+      <% @store4.each do |order| %>
+          <tbody>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.created_at.strftime("%Y-%m-%d") %></td>
+            <% if order.ready? %>
+                <td><%= order.employee.first_name %> <%= order.employee.insertion %> <%= order.employee.last_name %></td>
+            <% else %>
+                <td>Nog niet afgehandeld</td>
+            <% end %>
+            <td><%= order.customer.first_name %><%= order.customer.insertion %><%= order.customer.last_name %></td>
+            <% if order.payed? %>
+                <td>Ja</td>
+            <% else %>
+                <td>Nee</td>
+            <% end %>
+            <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
+            <td><%= link_to 'Behandel', edit_order_path(order), class: "btn btn-success" %></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+    </div>
+
 <% else %>
     <table class="table table-hover">
       <thead>
       <tr>
+        <th>Bestelling</th>
         <th>Winkel</th>
         <th>Datum</th>
+        <th>Afgehandeld</th>
         <th colspan="3"></th>
       </tr>
       </thead>
       <% @orders.each do |order| %>
           <tbody>
           <tr>
+            <td><%= order.id %></td>
             <td><%= order.store.store_name %></td>
             <td><%= order.created_at %></td>
+            <% if order.ready? %>
+                <td>Ja</td>
+            <% else %>
+                <td>Nee</td>
+            <% end %>
             <td><%= link_to 'Bekijk', order_path(order), class: "btn btn-default" %></td>
           </tr>
           </tbody>
       <% end %>
     </table>
 <% end %>
+<br><br>
 
-<%= link_to "Nieuwe Bestelling", new_order_path, class: 'btn btn-success' %>
+<% unless current_user.employee_role? %>
+  <%= link_to "Nieuwe Bestelling", new_order_path, class: 'btn btn-success' %>
+<% end %>

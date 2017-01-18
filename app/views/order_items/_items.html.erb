@@ -1,0 +1,33 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>Aantal</th>
+    <th>Per stuk</th>
+    <th>Bedrag</th>
+  </tr>
+  </thead>
+  <% @order.order_items.each do |item| %>
+      <tbody>
+      <tr>
+        <td><%= item.product.product_name %></td>
+        <td><%= item.amount %></td>
+        <td><%=  number_to_currency(item.product.product_price, :unit => "€") %></td>
+        <td><%=  number_to_currency(item.amount * item.product.product_price, :unit => "€") %></td>
+      </tr>
+
+      </tbody>
+  <% end %>
+</table>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tr>
+    <td>Totaal</td>
+    <td><%= number_to_currency(@total, :unit => "€") %></td>
+  </tr>
+</table>

@@ -1,0 +1,10 @@
+<%= simple_form_for([@order, @order.order_items.build], html: {class: 'form-inline'}) do |f| %>
+
+    <%= f.collection_select(:product_id, @products, :id, :product_name, {class: "dropdown-menu"}) %>
+
+    <div class="form-group form-inputs col-sx-2">
+      <%= f.input :amount, class: 'form-control', required: true%>
+    </div>
+
+    <%= f.button :submit, "Voeg Toe", class: 'form-control' %>
+<% end %>

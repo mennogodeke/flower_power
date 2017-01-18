@@ -11,7 +11,8 @@
     <%= @order.store.store_telephone %><br>
   </div>
   <div class="col-md-5">
-    <h3>Klant</h3>
+    <h3>Factuur</h3>
+    <strong>Facuur nummer</strong> <%= @order.id %> <strong>Factuur Datum</strong> <%= @order.created_at.strftime("%Y-%m-%d") %><br>
     <%= @order.customer.first_name %> <%= @order.customer.insertion %> <%= @order.customer.last_name %><br>
     <%= @order.customer.address %><br>
     <%= @order.customer.zip %><br>
@@ -29,7 +30,7 @@
     <th>Product</th>
     <th>Aantal</th>
     <th>Per stuk</th>
-    <th>Bedrag</th>
+    <th>Bedrag in euro's</th>
   </tr>
   </thead>
   <% @order.order_items.each do |item| %>
@@ -43,6 +44,18 @@
 
       </tbody>
   <% end %>
+</table>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tr>
+    <td>Totaal in euro's</td>
+    <td><%= @total %></td>
+  </tr>
 </table>
 
 <row>

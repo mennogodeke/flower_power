@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource :except => [:show, :index]
   def index
+    @store1 = Order.where(:store_id => 1).all
+    @store2 = Order.where(:store_id => 2).all
+    @store3 = Order.where(:store_id => 3).all
+    @store4 = Order.where(:store_id => 4).all
     if current_user.employee_role?
-      @orders = Order.all
+      @orders = Order.order(:store_id).all
       respond_to do |format|
         format.html
         format.pdf do
@@ -17,6 +21,10 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @products = Product.all
+    @total = 0
+    @order.order_items.each do |i|
+      @total += i.product.product_price * i.amount
+    end
     respond_to do |format|
       format.html
       format.pdf do

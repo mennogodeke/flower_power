@@ -2,7 +2,13 @@ class OrderItemsController < ApplicationController
   def create
     @order = Order.find(params[:order_id])
     @order_item = @order.order_items.create(order_item_params)
-    redirect_to order_path(@order)
+    if @order_item.save
+      redirect_to order_path(@order)
+    else
+      redirect_to order_path(@order)
+      flash[:error] = "Aantal is verplicht!"
+    end
+
   end
 
   private

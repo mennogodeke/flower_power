@@ -13,11 +13,12 @@
     <%= f.input :address, required: true %>
     <%= f.input :zip, required: true %>
     <%= f.input :city, required: true %>
-    <%= f.input :dob, required: true %>
+    <%= f.input :dob, as: :date, start_year: Date.today.year - 90,
+                end_year: Date.today.year - 12, required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", class: 'btn btn-success' %>
   </div>
 <% end %>
 
