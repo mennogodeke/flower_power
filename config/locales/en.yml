@@ -21,3 +21,35 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        blank: 'Mag niet leeg zijn'
+      models:
+        product:
+          attributes:
+            product_name:
+              blank: "Mag niet leeg zijn"
+              too_short: "Moet meer dan 1 teken zijn"
+            product_price:
+              blank: "Mag niet leeg zijn"
+              greater_than: "Moet hoger zijn dan 0"
+              not_a_number: "Moet een getal zijn"
+        user:
+          attributes:
+            first_name:
+              invalid: 'U mag alleen letters gebruiken'
+            last_name:
+              invalid: 'U mag alleen letters gebruiken'
+            city:
+              invalid: 'U mag alleen letters gebruiken'
+            email:
+              invalid: 'Email adress bestaat niet'
+            password:
+              too_short: 'Wachtwoord moet minimaal 6 tekens zijn'
+            zip:
+              invalid: 'Is geen geldige postcode'
+
+
+
+

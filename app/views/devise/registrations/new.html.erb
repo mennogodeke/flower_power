@@ -4,17 +4,17 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
-    <%= f.input :first_name, required: true %>
-    <%= f.input :insertion%>
-    <%= f.input :last_name, required: true %>
-    <%= f.input :address, required: true %>
-    <%= f.input :zip, required: true %>
-    <%= f.input :city, required: true %>
+    <%= f.input :email, required: true, autofocus: true, label: 'Email' %>
+    <%= f.input :password, label: 'Wachtwoord', required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, label: 'Herhaal wachtwoord', required: true %>
+    <%= f.input :first_name, required: true, label: 'Voornaam' %>
+    <%= f.input :insertion , label: 'Tussenvoegsel'%>
+    <%= f.input :last_name, required: true, label: 'Achternaam' %>
+    <%= f.input :address, required: true, label: 'Adres' %>
+    <%= f.input :zip, required: true, label: 'Postcode' %>
+    <%= f.input :city, required: true, label: 'Woonplaats' %>
     <%= f.input :dob, as: :date, start_year: Date.today.year - 90,
-                end_year: Date.today.year - 12, required: true %>
+                end_year: Date.today.year - 12, required: true, label: 'Geboorte datum' %>
   </div>
 
   <div class="form-actions">

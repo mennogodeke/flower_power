@@ -9,16 +9,29 @@
   User.create(
           :email => "testklant#{i}@mail.com",
           :password => "password",
-          :password_confirmation => "password"
+          :password_confirmation => "password",
+          :first_name => "lorem",
+          :last_name => "lorem",
+          :address => "lorem",
+          :zip => "3333tt",
+          :city => "mijnstad",
+          :dob => DateTime.new(1900, 3, 28)
   )
 end
+
 
 1.upto(2) do |i|
   User.create(
       :email => "testmedewerker#{i}@mail.com",
       :password => "password",
       :password_confirmation => "password",
-      :employee_role => true
+      :employee_role => true,
+      :first_name => "lorem",
+      :last_name => "lorem",
+      :address => "lorem",
+      :zip => "3333tt",
+      :city => "mijnstad",
+      :dob => DateTime.new(1900, 3, 28)
   )
 end
 

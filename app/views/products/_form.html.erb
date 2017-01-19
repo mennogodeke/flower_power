@@ -3,8 +3,7 @@
     <% if @product.errors.any? %>
         <div id="error_explanation">
           <h2>
-            <%= pluralize(@product.errors.count, "error") %> prohibited
-            this article from being saved:
+            <%= pluralize(@product.errors.count, "error") %> Voorkomen dat dit artikel kan worden opgeslagen
           </h2>
           <ul>
             <% @product.errors.full_messages.each do |msg| %>
@@ -15,8 +14,9 @@
     <% end %>
 
 
-    <%= f.input :product_name %>
+    <%= f.input :product_name, label: 'Product naam' %><br>
+    Prijs
     <%= f.number_field :product_price %>
-    <%= f.button :submit %>
+    <%= f.button :submit, "Voeg product toe" %>
 
 <% end %>

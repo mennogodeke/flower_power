@@ -6,7 +6,7 @@ class OrderItemsController < ApplicationController
       redirect_to order_path(@order)
     else
       redirect_to order_path(@order)
-      flash[:error] = "Aantal is verplicht!"
+      flash[:error] = "Aantal is verplicht en moet hoger zijn dan 1"
     end
 
   end
