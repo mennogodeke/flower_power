@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
   skip_before_action :authenticate_user!, :only => [:index, :show]
-  def index
+  def index #methode om alle producten te laten zien
     @products = Product.all
   end
 
@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def new
+  def new #methode om een nieuw product te creeeren
     @product = Product.new
   end
 
@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def create
+  def create #methode om een nieuw product op te slaan
     @product = Product.new(product_params)
 
     if @product.save
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy #methode om producten te verwijderen
     @product = Product.find(params[:id])
     @product.destroy
 
@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   end
 
   private
-    def product_params
+    def product_params #parameters komen in een private method om mysql injectie en x site scripting te voorkomen
       params.require(:product).permit(:product_name, :product_price)
     end
 end

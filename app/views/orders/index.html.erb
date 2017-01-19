@@ -1,6 +1,6 @@
 <h1>Bestellingen</h1>
 
-<% if current_user.employee_role? %>
+<% if current_user.employee_role? #wanneer een gebruiker een medewerker is laat het volgende zien:%>
     <input type='button' id='all-orders-button' value='Alle'>
     <div class="all-orders">
       <table class="table table-hover">
@@ -193,7 +193,7 @@
     </table>
     </div>
 
-<% else %>
+<% else #laat dit zien wanneer de ingelogde gebruiker een klant is %>
     <table class="table table-hover">
       <thead>
       <tr>
