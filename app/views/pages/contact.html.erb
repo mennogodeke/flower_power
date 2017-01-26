@@ -8,6 +8,7 @@
     <th>Postcode</th>
     <th>Telefoon</th>
     <th>Email</th>
+    <th>Openingstijden</th>
   </tr>
   </thead>
   <% Store.all.each do |store| %>
@@ -18,6 +19,11 @@
       <td><%= store.store_zip %></td>
       <td><%= store.store_telephone %></td>
       <td><%= store.email %></td>
+      <td>Ma - Vr <strong>09:00 - 17:00</strong><br>
+          Za <strong>09:00 - 16:00</strong><br>
+          Zo <strong>12:00 - 16:00</strong><br>
+          Nationale feestdagen gesloten
+      </td>
     </tr>
     </tbody>
   <%end%>
